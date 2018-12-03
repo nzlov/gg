@@ -14,10 +14,16 @@ func splitOnSpace(x string) []string {
 	pi := 0
 	ps := false
 	for i, c := range x {
-		s := unicode.IsSpace(c)
+		s := unicode.Is(unicode.Han,c)
 		if s != ps && i > 0 {
 			result = append(result, x[pi:i])
 			pi = i
+		}else{
+			s = unicode.IsSpace(c)
+			if s != ps && i > 0 {
+				result = append(result, x[pi:i])
+				pi = i
+			}
 		}
 		ps = s
 	}
